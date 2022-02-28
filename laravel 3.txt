@@ -1,0 +1,299 @@
+==========================LARAVEL CLASS 1=============================
+ORP EXPERIENCE
+laravel framework:
+-php born in 1994
+-popularity in 2000-2004
+-to create a structure, php frameworks came in action near/after2004
+-and laravel came in june 2011
+-mvc - model view controller wasnt there in v1
+-taylor orlwell - laravel developer
+-resource abundant and security better, hence famous
+-laravel is combination of 3 frameworks -symfony, cake php and
+-laravel can be installed in 3 ways - installer, composer, docker
+	1.composer global require laravel/installer --> ekbar run korlei done
+	2.composer create project
+
+composer create-project laravel/laravel first_project
+uporer ettuk pre defined	eta amader project
+composer is php's dependenncy
+composer github theke ane
+laravel/laravel is username/reponame
+
+---version bole na dile default version the niye nibe
+else, composer create project laravel/laravel first_project "version"
+
+--laravel built-in development server-artisan -------- php artisan serve   ---- modified by laravel
+		would give -- 127.0.0.1:8000
+				IP	port
+
+---------------------------------------------------------------------------------------------------
+laracast is the stack overflow of laravel
+blade is a templating engine
+.php- regular php file
+.blade.php- templating file which is later converted to php
+difference: blade e php block lagena
+---------------------------------------------------------------------------------------------------
+project structure:
+
+app, vendor, composer.json - in root ager moto
+app -?console (all hardware related work) ->kernel.php
+	exception: 404, 403 all error's view page here
+		http: mvc --> controler ||middleware for security purpose  -http er request register kore kernal.php
+---------------------------------------------------------------------------------------------------
+
+==========================LARAVEL CLASS 2=============================
+
+-project always inside htdocs
+-root/parent must always be htdocs
+-adb country manager + foreigners
+-Route:: create object
+- :: operator
+-
+-basic of mvc
+	m->model		c->controller		v->view
+
+this is the lifecycl of mvc (ie, m-c-v)
+-model and controller are classes
+-model class works with data
+-controller class works with logic
+
+-view needs to fetch data from model to display the data, but it cannot directly bring/request model
+-so view requests to controller to fetch data from model and give it to view
+-controller requests model, so, model takes data from database and returns to controller
+-and finally, controller returns the requested data to view
+
+-to make the php class into controller, we extend it: class Example extends Controller 
+
+
+
+- we work with web.php, controller by createing class and using them
+
+//php artisan: command line/cli for laravel
+php artisan make:controller
+
+-------------------------------------------------------------------------------------
+<h1>
+    {{$firstName}} {{ $lastName }}
+</h1>
+this syntax works only for .blade.php files
+-------------------------------------------------------------------------------------
+route - 1. kon url er jonne kaaj korbe eta define kore
+	2. and ei url er jonne kon controller run hobe define kore
+view theke request korte ota aage route e jabe, then controller
+so basically route does all the sorting and decides which view will run when
+-------------------------------------------------------------------------------------
+compact method e variable or property er naam dite hoy
+-------------------------------------------------------------------------------------
+Route::get('/',[StudentController::class,'home'])->name('home');
+'/' root/url
+
+
+
+return view('home.home');
+home.home --> directory.file
+ie, home folder er bhitor home file
+'.' diye path change hoy ekhane-- '.' mane ager'/'
+-------------------------------------------------------------------------------------
+PUBLIC FOLDER IS THE ONLY ONE THAT CAN BE ACCESSED! SO ALL MULTIMEDIA MUST BE STORED HERE
+path always with respect to public folder
+RESOURCE:
+
+
+-------------------------------------------------------------------------------------
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+etay security nai so we wont be using this anymore,
+and follow th e blade syntax
+
+..ref="{{asset('/')}}ass...{{asset}} root e niye jacche
+ei asset method public porjonto nibe
+because amar base url public porjonto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================LARAVEL CLASS 3=============================
+
+lifecycle: index -> route ->
+
+
+url method -> parameter e url er path
+
+
+
+->name('calculator');
+name is an array - "as" of php
+
+form,url,server diye hack kora hoy
+so in anchor tag, we wont use the url method.
+so instead, for security purpose, we will use route method
+
+419 error - csrf error chaay - a security token which the page requires but we fail to provide
+
+
+-laravel demands a token for each post request/submit
+
+@csrf -- is a blade syntax -- automatic token dey 
+<?php csrf_token ?> 
+
+data collect korbo with a class named request -- (raw php er if(isset($_POST))
+
+
+request ta json file return kore:
+{
+index:value
+}
+
+javascript e object banay by {}
+
+request class post theke data collect kore index dhore, and index gula ke property
+and (json object hishebe return kore)
+return $request ->first_name; //object dhore property print kore
+all() -- this method prints all the data it gets index dhore
+
+
+return redirect()->back()->with('full-name', $this->result);
+-->redirec korabe
+-->jei url theke last request ashtese ota back korabe
+-->with has 1. index, 2.value (with('fullName', $this->result))
+
+--->with is one kind of session, ekbar reload korle vanish
+
+..extend korle data push kora jaay
+tai we include where we do not want any changes
+
+
+----->fav-icon is 16*16 pixel<-----------
+
+====================================================================
+
+value="{{Session::has('result') ? Session::get('result'): ''}}"
+Session is a class
+and
+Session object dhore has method ke call kora hoy
+and it is checking ei method e value ase naki
+
+put - data rakhe
+get - data ane
+
+-----------------------done with view and controller-----------------------
+
+
+=== model ===
+to create a model: php artisan make:model ExampleModel
+
+
+class ExampleModel extends Model
+{
+    use HasFactory; -------> treat
+}
+
+
+
+php artisan make:model student/Student -c
+
+Model and Controller created successfully.
+student-directory te Student Model
+
+ public static function index() --  a static method, 
+eta use korle alada kore object banano lagena
+eg- $students = new Student(); $students->student;
+
+***THIS --- SELF***
+	
+
+extra info---
+in static method, static way te property use kora lagbe
+
+-- self can be own class object when required
+
+//static e we can only call static properties, not the normal one in static method
+
+
+
+self/ object dhore static method e anle $ sign dite lagbe object e, own class object
+
+for a laravel project:
+1. planning - oop
+2. execute - mvc
+
+
+{{}} = <? php echo ?>
+
+
+
+
+student controller:
+public function student()
+    {
+        $this->students = Student::index(); //model class theke data gula niye ashchi
+        return view('student.view-students', ['students' => $this->student()]);
+    }
+
+
+
+
+=================================================================
+			MYSQL
+=================================================================
+-mysql, mysqli, pdo
+Schema class creates table in database
+BluePrint creates table cols in database
+Method always singular
+Table name always plural and smol letter (only underscore can be used)
+blueprint er object dhore method call kore
+
+"-m" migration
+
+varchar: 1 character = 1byte
+int - takes much higher 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
